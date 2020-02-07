@@ -193,3 +193,27 @@ using(`emp_no`)
 WHERE dept_manager.to_date > now() and salaries.to_date > now()
 ORDER BY Salary DESC;
 
+-- Bonus Find the names of all current employees, their department name, and their current manager's name. 240,124 Rows
+/* 
+Employee Name | Department Name  |  Manager Name
+--------------|------------------|-----------------
+ Huan Lortz   | Customer Service | Yuchang Weedman */
+-- Current Managers query
+SELECT concat(`first_name`, ' ', `last_name`) as Employee_Name, `dept_name`as Department_Name, managers.Manager_Name
+FROM `employees`
+join dept_emp
+using(emp_no)
+join departments
+using(dept_no)
+join(
+    SELECT `departments`.dept_name, concat(employees.first_name, ' ', employees.`last_name`) as Manager_Name
+    FROM departments
+    JOIN dept_manager
+    USING(dept_no)
+    INNER JOIN `employees`
+    USING(emp_no)
+    WHERE to_date > now()
+    ORDER BY dept_name
+) as managers
+USING(dept_name)
+where dept_emp.to_date > now()
