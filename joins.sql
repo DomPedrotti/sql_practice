@@ -217,3 +217,23 @@ join(
 ) as managers
 USING(dept_name)
 where dept_emp.to_date > now()
+
+-- Bonus Find the highest paid employee in each department.
+SELECT first_name, last_name, dept_name, top_salaries.salary
+FROM employees
+join salaries
+using(emp_no)
+JOIN
+(
+    SELECT dept_name,max(salary) as salary
+    from employees
+    join salaries
+    using(emp_no)
+    join dept_emp
+    using(emp_no)
+    join departments
+    using(dept_no)
+    WHERE salaries.to_date > now()
+    GROUP BY dept_name
+) as top_salaries
+using(salary);
