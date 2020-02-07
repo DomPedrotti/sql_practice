@@ -1,1 +1,2 @@
-# sql_practice
+# SQL Practice
+Just running through some old sql challenges in preperation for technical interviews. The queries are being written on Sequel Pro, copied and pasted into .sql files and uploaded that way 
