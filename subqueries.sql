@@ -61,3 +61,30 @@ where salary > (
 	SELECT max(salary) - STD(salary) FROM salaries) 
 AND to_date > now()
 
+-- BONUS
+-- Find all the department names that currently have female managers.
+/* 
++-----------------+
+| dept_name       |
++-----------------+
+| Development     |
+| Finance         |
+| Human Resources |
+| Research        |
++-----------------+ */
+
+-- Find the first and last name of the employee with the highest salary.
+/* 
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Tokuyasu   | Pesch     |
++------------+-----------+ */
+
+-- Find the department name that the employee with the highest salary works in.
+/* 
++-----------+
+| dept_name |
++-----------+
+| Sales     |
++-----------+ */
