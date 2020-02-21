@@ -72,6 +72,13 @@ AND to_date > now()
 | Human Resources |
 | Research        |
 +-----------------+ */
+SELECT dept_name FROM employees
+JOIN dept_emp USING(emp_no)
+JOIN departments using(dept_no)
+WHERE gender = 'F' and emp_no in(
+	SELECT emp_no FROM dept_manager
+	WHERE to_date > now()
+);
 
 -- Find the first and last name of the employee with the highest salary.
 /* 
