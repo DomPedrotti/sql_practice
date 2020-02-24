@@ -87,6 +87,11 @@ WHERE gender = 'F' and emp_no in(
 +------------+-----------+
 | Tokuyasu   | Pesch     |
 +------------+-----------+ */
+select first_name, last_name FROM salaries
+JOIN employees USING(emp_no)
+WHERE salary in(
+	select max(salary) from salaries
+);
 
 -- Find the department name that the employee with the highest salary works in.
 /* 
@@ -95,3 +100,10 @@ WHERE gender = 'F' and emp_no in(
 +-----------+
 | Sales     |
 +-----------+ */
+select dept_name FROM salaries
+JOIN employees USING(emp_no)
+JOIN dept_emp USING(emp_no)
+JOIN departments using(dept_no)
+WHERE salary in(
+	select max(salary) from salaries
+);
